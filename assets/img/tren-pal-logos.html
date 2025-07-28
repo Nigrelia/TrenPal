@@ -1,0 +1,744 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tren Pal - Fitness Logo Downloads</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 20px;
+            background: #000;
+            font-family: 'Arial', sans-serif;
+            color: white;
+        }
+
+        .logo-gallery {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .logo-option {
+            background: linear-gradient(135deg, #404040 0%, #2A2A2A 100%);
+            border: 2px solid rgba(255, 82, 82, 0.6);
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 
+                0 0 20px rgba(255, 82, 82, 0.3),
+                0 6px 12px rgba(0, 0, 0, 0.4);
+        }
+
+        .logo-preview {
+            width: 400px;
+            height: 80px;
+            margin: 0 auto 20px auto;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        .download-btn {
+            background: linear-gradient(135deg, #ff5252 0%, #ff1744 100%);
+            border: none;
+            color: white;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-weight: bold;
+            cursor: pointer;
+            font-size: 14px;
+            letter-spacing: 0.5px;
+            transition: all 0.3s ease;
+            display: block;
+            margin: 0 auto;
+            text-decoration: none;
+            text-align: center;
+            width: 200px;
+        }
+
+        .download-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(255, 23, 68, 0.4);
+        }
+
+        .logo-title {
+            text-align: center;
+            color: #ff5252;
+            margin-bottom: 10px;
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        .logo-description {
+            text-align: center;
+            color: #ccc;
+            margin-bottom: 15px;
+            font-size: 13px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #ff5252;
+            margin-bottom: 30px;
+            font-size: 36px;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .app-subtitle {
+            text-align: center;
+            color: #fff;
+            margin-bottom: 40px;
+            font-size: 16px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+    </style>
+</head>
+<body>
+    <h1>💪 TREN PAL</h1>
+    <p class="app-subtitle">Fitness & Bodybuilding Logo Collection</p>
+    
+    <div class="logo-gallery">
+        <!-- Logo 1: Classic Dumbbell -->
+        <div class="logo-option">
+            <h3 class="logo-title">Classic Dumbbell</h3>
+            <p class="logo-description">Traditional dumbbell icon with bold typography</p>
+            <div class="logo-preview">
+                <canvas id="logo1" width="400" height="80"></canvas>
+            </div>
+            <button class="download-btn" onclick="downloadLogo('logo1', 'trenpal-dumbbell.png')">
+                📥 Download PNG
+            </button>
+        </div>
+
+        <!-- Logo 2: Barbell Power -->
+        <div class="logo-option">
+            <h3 class="logo-title">Barbell Power</h3>
+            <p class="logo-description">Heavy barbell with weight plates design</p>
+            <div class="logo-preview">
+                <canvas id="logo2" width="400" height="80"></canvas>
+            </div>
+            <button class="download-btn" onclick="downloadLogo('logo2', 'trenpal-barbell.png')">
+                📥 Download PNG
+            </button>
+        </div>
+
+        <!-- Logo 3: Muscle Flex -->
+        <div class="logo-option">
+            <h3 class="logo-title">Muscle Flex</h3>
+            <p class="logo-description">Flexing bicep with strength emphasis</p>
+            <div class="logo-preview">
+                <canvas id="logo3" width="400" height="80"></canvas>
+            </div>
+            <button class="download-btn" onclick="downloadLogo('logo3', 'trenpal-muscle.png')">
+                📥 Download PNG
+            </button>
+        </div>
+
+        <!-- Logo 4: Gym Beast -->
+        <div class="logo-option">
+            <h3 class="logo-title">Gym Beast</h3>
+            <p class="logo-description">Aggressive design with multiple fitness elements</p>
+            <div class="logo-preview">
+                <canvas id="logo4" width="400" height="80"></canvas>
+            </div>
+            <button class="download-btn" onclick="downloadLogo('logo4', 'trenpal-beast.png')">
+                📥 Download PNG
+            </button>
+        </div>
+
+        <!-- Logo 5: Progress Tracker -->
+        <div class="logo-option">
+            <h3 class="logo-title">Progress Tracker</h3>
+            <p class="logo-description">Chart-based design showing fitness progress</p>
+            <div class="logo-preview">
+                <canvas id="logo5" width="400" height="80"></canvas>
+            </div>
+            <button class="download-btn" onclick="downloadLogo('logo5', 'trenpal-progress.png')">
+                📥 Download PNG
+            </button>
+        </div>
+
+        <!-- Logo 6: Iron Temple -->
+        <div class="logo-option">
+            <h3 class="logo-title">Iron Temple</h3>
+            <p class="logo-description">Minimalist design with geometric elements</p>
+            <div class="logo-preview">
+                <canvas id="logo6" width="400" height="80"></canvas>
+            </div>
+            <button class="download-btn" onclick="downloadLogo('logo6', 'trenpal-temple.png')">
+                📥 Download PNG
+            </button>
+        </div>
+
+        <!-- Logo 7: Strength Stack -->
+        <div class="logo-option">
+            <h3 class="logo-title">Strength Stack</h3>
+            <p class="logo-description">Stacked weight plates with modern typography</p>
+            <div class="logo-preview">
+                <canvas id="logo7" width="400" height="80"></canvas>
+            </div>
+            <button class="download-btn" onclick="downloadLogo('logo7', 'trenpal-stack.png')">
+                📥 Download PNG
+            </button>
+        </div>
+
+        <!-- Logo 8: Workout Buddy -->
+        <div class="logo-option">
+            <h3 class="logo-title">Workout Buddy</h3>
+            <p class="logo-description">Friendly companion design with fitness icons</p>
+            <div class="logo-preview">
+                <canvas id="logo8" width="400" height="80"></canvas>
+            </div>
+            <button class="download-btn" onclick="downloadLogo('logo8', 'trenpal-buddy.png')">
+                📥 Download PNG
+            </button>
+        </div>
+
+        <!-- Logo 9: Elite Performance -->
+        <div class="logo-option">
+            <h3 class="logo-title">Elite Performance</h3>
+            <p class="logo-description">Premium design with performance metrics</p>
+            <div class="logo-preview">
+                <canvas id="logo9" width="400" height="80"></canvas>
+            </div>
+            <button class="download-btn" onclick="downloadLogo('logo9', 'trenpal-elite.png')">
+                📥 Download PNG
+            </button>
+        </div>
+
+        <!-- Logo 10: Hardcore Gains -->
+        <div class="logo-option">
+            <h3 class="logo-title">Hardcore Gains</h3>
+            <p class="logo-description">Intense design with multiple workout elements</p>
+            <div class="logo-preview">
+                <canvas id="logo10" width="400" height="80"></canvas>
+            </div>
+            <button class="download-btn" onclick="downloadLogo('logo10', 'trenpal-hardcore.png')">
+                📥 Download PNG
+            </button>
+        </div>
+    </div>
+
+    <script>
+        // Helper functions
+        function createGradient(ctx, x1, y1, x2, y2, color1, color2) {
+            const gradient = ctx.createLinearGradient(x1, y1, x2, y2);
+            gradient.addColorStop(0, color1);
+            gradient.addColorStop(1, color2);
+            return gradient;
+        }
+
+        function roundRect(ctx, x, y, width, height, radius) {
+            ctx.beginPath();
+            ctx.moveTo(x + radius, y);
+            ctx.lineTo(x + width - radius, y);
+            ctx.quadraticCurveTo(x + width, y, x + width, y + radius);
+            ctx.lineTo(x + width, y + height - radius);
+            ctx.quadraticCurveTo(x + width, y + height, x + width - radius, y + height);
+            ctx.lineTo(x + radius, y + height);
+            ctx.quadraticCurveTo(x, y + height, x, y + height - radius);
+            ctx.lineTo(x, y + radius);
+            ctx.quadraticCurveTo(x, y, x + radius, y);
+            ctx.closePath();
+        }
+
+        function drawBase(ctx) {
+            ctx.clearRect(0, 0, 400, 80);
+            
+            // Background with rounded corners
+            ctx.fillStyle = createGradient(ctx, 0, 0, 400, 80, '#404040', '#2A2A2A');
+            roundRect(ctx, 0, 0, 400, 80, 12);
+            ctx.fill();
+            
+            // Glow effect
+            ctx.shadowColor = 'rgba(255, 82, 82, 0.3)';
+            ctx.shadowBlur = 20;
+            
+            // Border with rounded corners
+            ctx.strokeStyle = 'rgba(255, 82, 82, 0.6)';
+            ctx.lineWidth = 2;
+            roundRect(ctx, 1, 1, 398, 78, 12);
+            ctx.stroke();
+            
+            ctx.shadowColor = 'transparent';
+            ctx.shadowBlur = 0;
+        }
+
+        // Logo 1: Classic Dumbbell
+        function drawLogo1() {
+            const canvas = document.getElementById('logo1');
+            const ctx = canvas.getContext('2d');
+            drawBase(ctx);
+            
+            // Dumbbell icon
+            const iconGradient = ctx.createLinearGradient(20, 16, 68, 64);
+            iconGradient.addColorStop(0, '#ff5252');
+            iconGradient.addColorStop(1, '#ff1744');
+            ctx.fillStyle = iconGradient;
+            roundRect(ctx, 20, 16, 48, 48, 8);
+            ctx.fill();
+            
+            // Dumbbell shape
+            ctx.fillStyle = 'white';
+            // Handle
+            ctx.fillRect(38, 35, 24, 6);
+            // Left weight
+            ctx.fillRect(32, 28, 12, 20);
+            // Right weight
+            ctx.fillRect(56, 28, 12, 20);
+            
+            // Main text
+            ctx.fillStyle = 'white';
+            ctx.font = 'bold 28px Arial';
+            ctx.textAlign = 'left';
+            ctx.fillText('TREN PAL', 85, 35);
+            
+            // Subtitle
+            ctx.fillStyle = '#ff5252';
+            ctx.font = 'bold 12px Arial';
+            ctx.fillText('FITNESS COMPANION', 85, 55);
+            
+            // Accent
+            ctx.fillStyle = '#ff5252';
+            roundRect(ctx, 376, 20, 4, 40, 2);
+            ctx.fill();
+        }
+
+        // Logo 2: Barbell Power
+        function drawLogo2() {
+            const canvas = document.getElementById('logo2');
+            const ctx = canvas.getContext('2d');
+            drawBase(ctx);
+            
+            // Barbell background
+            const iconGradient = ctx.createLinearGradient(15, 30, 75, 50);
+            iconGradient.addColorStop(0, '#ff5252');
+            iconGradient.addColorStop(1, '#ff1744');
+            ctx.fillStyle = iconGradient;
+            roundRect(ctx, 15, 30, 60, 20, 6);
+            ctx.fill();
+            
+            // Barbell
+            ctx.fillStyle = 'white';
+            // Bar
+            ctx.fillRect(20, 38, 50, 4);
+            // Left plates
+            ctx.fillRect(18, 32, 8, 16);
+            ctx.fillRect(16, 34, 4, 12);
+            // Right plates
+            ctx.fillRect(64, 32, 8, 16);
+            ctx.fillRect(70, 34, 4, 12);
+            
+            // Main text
+            ctx.fillStyle = 'white';
+            ctx.font = 'bold 26px Arial';
+            ctx.textAlign = 'left';
+            ctx.fillText('TREN PAL', 90, 35);
+            
+            // Subtitle
+            ctx.fillStyle = '#ff5252';
+            ctx.font = 'bold 11px Arial';
+            ctx.fillText('BARBELL TRAINING', 90, 55);
+            
+            // Weight indicator
+            ctx.fillStyle = '#ff5252';
+            ctx.font = 'bold 14px Arial';
+            ctx.textAlign = 'center';
+            ctx.fillText('315', 360, 35);
+            ctx.fillStyle = 'white';
+            ctx.font = 'bold 9px Arial';
+            ctx.fillText('LBS', 360, 50);
+        }
+
+        // Logo 3: Muscle Flex
+        function drawLogo3() {
+            const canvas = document.getElementById('logo3');
+            const ctx = canvas.getContext('2d');
+            drawBase(ctx);
+            
+            // Muscle icon background
+            const iconGradient = ctx.createLinearGradient(20, 16, 68, 64);
+            iconGradient.addColorStop(0, '#ff5252');
+            iconGradient.addColorStop(1, '#ff1744');
+            ctx.fillStyle = iconGradient;
+            ctx.beginPath();
+            ctx.arc(44, 40, 24, 0, 2 * Math.PI);
+            ctx.fill();
+            
+            // Flexing muscle emoji
+            ctx.fillStyle = 'white';
+            ctx.font = 'bold 28px Arial';
+            ctx.textAlign = 'center';
+            ctx.fillText('💪', 44, 48);
+            
+            // Main text
+            ctx.fillStyle = 'white';
+            ctx.font = 'bold 28px Arial';
+            ctx.textAlign = 'left';
+            ctx.fillText('TREN PAL', 85, 35);
+            
+            // Subtitle
+            ctx.fillStyle = '#ff5252';
+            ctx.font = 'bold 12px Arial';
+            ctx.fillText('MUSCLE BUILDER', 85, 55);
+            
+            // Strength meter
+            ctx.fillStyle = 'rgba(255, 82, 82, 0.2)';
+            roundRect(ctx, 320, 25, 60, 8, 4);
+            ctx.fill();
+            ctx.fillStyle = '#ff5252';
+            roundRect(ctx, 322, 27, 45, 4, 2);
+            ctx.fill();
+            
+            ctx.fillStyle = 'white';
+            ctx.font = 'bold 8px Arial';
+            ctx.textAlign = 'center';
+            ctx.fillText('STRENGTH', 350, 45);
+        }
+
+        // Logo 4: Gym Beast
+        function drawLogo4() {
+            const canvas = document.getElementById('logo4');
+            const ctx = canvas.getContext('2d');
+            drawBase(ctx);
+            
+            // Beast icon with multiple elements
+            const iconGradient = ctx.createLinearGradient(15, 15, 75, 65);
+            iconGradient.addColorStop(0, '#ff5252');
+            iconGradient.addColorStop(1, '#ff1744');
+            ctx.fillStyle = iconGradient;
+            roundRect(ctx, 15, 15, 60, 50, 10);
+            ctx.fill();
+            
+            // Multiple fitness icons
+            ctx.fillStyle = 'white';
+            ctx.font = 'bold 16px Arial';
+            ctx.textAlign = 'center';
+            ctx.fillText('🏋️', 30, 35);
+            ctx.fillText('💪', 45, 50);
+            ctx.fillText('🔥', 60, 35);
+            
+            // Main text
+            ctx.fillStyle = 'white';
+            ctx.font = 'bold 26px Arial';
+            ctx.textAlign = 'left';
+            ctx.fillText('TREN PAL', 90, 35);
+            
+            // Subtitle
+            ctx.fillStyle = '#ff5252';
+            ctx.font = 'bold 11px Arial';
+            ctx.fillText('GYM BEAST MODE', 90, 55);
+            
+            // Beast badge
+            ctx.fillStyle = 'rgba(255, 82, 82, 0.2)';
+            roundRect(ctx, 320, 25, 60, 20, 10);
+            ctx.fill();
+            ctx.strokeStyle = 'rgba(255, 82, 82, 0.4)';
+            ctx.lineWidth = 1;
+            roundRect(ctx, 320, 25, 60, 20, 10);
+            ctx.stroke();
+            ctx.fillStyle = '#ff5252';
+            ctx.font = 'bold 9px Arial';
+            ctx.textAlign = 'center';
+            ctx.fillText('BEAST', 350, 37);
+        }
+
+        // Logo 5: Progress Tracker
+        function drawLogo5() {
+            const canvas = document.getElementById('logo5');
+            const ctx = canvas.getContext('2d');
+            drawBase(ctx);
+            
+            // Progress chart
+            const barHeights = [15, 25, 35, 30, 40];
+            const barGradient = ctx.createLinearGradient(0, 20, 0, 60);
+            barGradient.addColorStop(0, '#ff8a80');
+            barGradient.addColorStop(1, '#ff5252');
+            
+            for (let i = 0; i < 5; i++) {
+                ctx.fillStyle = barGradient;
+                roundRect(ctx, 20 + i * 10, 60 - barHeights[i], 6, barHeights[i], 3);
+                ctx.fill();
+            }
+            
+            // Main text
+            ctx.fillStyle = 'white';
+            ctx.font = 'bold 26px Arial';
+            ctx.textAlign = 'left';
+            ctx.fillText('TREN PAL', 85, 35);
+            
+            // Subtitle
+            ctx.fillStyle = '#ff5252';
+            ctx.font = 'bold 11px Arial';
+            ctx.fillText('PROGRESS TRACKER', 85, 55);
+            
+            // Stats
+            ctx.fillStyle = '#ff5252';
+            ctx.font = 'bold 16px Arial';
+            ctx.textAlign = 'center';
+            ctx.fillText('+25%', 350, 32);
+            ctx.fillStyle = 'white';
+            ctx.font = 'bold 8px Arial';
+            ctx.fillText('GAINS', 350, 45);
+        }
+
+        // Logo 6: Iron Temple
+        function drawLogo6() {
+            const canvas = document.getElementById('logo6');
+            const ctx = canvas.getContext('2d');
+            drawBase(ctx);
+            
+            // Geometric temple design
+            ctx.fillStyle = '#ff5252';
+            // Base
+            ctx.fillRect(25, 50, 40, 8);
+            // Columns
+            ctx.fillRect(30, 30, 6, 20);
+            ctx.fillRect(42, 30, 6, 20);
+            ctx.fillRect(54, 30, 6, 20);
+            // Top
+            ctx.fillRect(28, 25, 34, 5);
+            
+            // Main text - centered
+            ctx.fillStyle = 'white';
+            ctx.font = 'bold 32px Arial';
+            ctx.textAlign = 'center';
+            ctx.fillText('TREN PAL', 200, 35);
+            
+            // Subtitle
+            ctx.fillStyle = '#ff5252';
+            ctx.font = 'bold 12px Arial';
+            ctx.fillText('IRON TEMPLE', 200, 55);
+            
+            // Side geometric elements
+            ctx.fillStyle = 'rgba(255, 82, 82, 0.6)';
+            ctx.fillRect(320, 25, 3, 30);
+            ctx.fillRect(330, 30, 3, 20);
+            ctx.fillRect(340, 35, 3, 10);
+        }
+
+        // Logo 7: Strength Stack
+        function drawLogo7() {
+            const canvas = document.getElementById('logo7');
+            const ctx = canvas.getContext('2d');
+            drawBase(ctx);
+            
+            // Stacked weight plates
+            const plateGradient = ctx.createLinearGradient(20, 20, 70, 60);
+            plateGradient.addColorStop(0, '#ff5252');
+            plateGradient.addColorStop(1, '#ff1744');
+            
+            // Stack of plates
+            for (let i = 0; i < 3; i++) {
+                ctx.fillStyle = plateGradient;
+                ctx.beginPath();
+                ctx.arc(45, 45 - i * 3, 20 - i * 2, 0, 2 * Math.PI);
+                ctx.fill();
+                
+                // Inner circle
+                ctx.fillStyle = 'rgba(0, 0, 0, 0.3)';
+                ctx.beginPath();
+                ctx.arc(45, 45 - i * 3, 8 - i, 0, 2 * Math.PI);
+                ctx.fill();
+            }
+            
+            // Main text
+            ctx.fillStyle = 'white';
+            ctx.font = 'bold 26px Arial';
+            ctx.textAlign = 'left';
+            ctx.fillText('TREN PAL', 85, 35);
+            
+            // Subtitle
+            ctx.fillStyle = '#ff5252';
+            ctx.font = 'bold 11px Arial';
+            ctx.fillText('STRENGTH STACK', 85, 55);
+            
+            // Weight display
+            ctx.fillStyle = '#ff5252';
+            ctx.font = 'bold 18px Arial';
+            ctx.textAlign = 'center';
+            ctx.fillText('45', 350, 32);
+            ctx.fillStyle = 'white';
+            ctx.font = 'bold 8px Arial';
+            ctx.fillText('KG', 350, 45);
+        }
+
+        // Logo 8: Workout Buddy
+        function drawLogo8() {
+            const canvas = document.getElementById('logo8');
+            const ctx = canvas.getContext('2d');
+            drawBase(ctx);
+            
+            // Friendly buddy icon
+            const iconGradient = ctx.createLinearGradient(20, 16, 68, 64);
+            iconGradient.addColorStop(0, '#ff5252');
+            iconGradient.addColorStop(1, '#ff1744');
+            ctx.fillStyle = iconGradient;
+            roundRect(ctx, 20, 16, 48, 48, 12);
+            ctx.fill();
+            
+            // Buddy face
+            ctx.fillStyle = 'white';
+            ctx.font = 'bold 24px Arial';
+            ctx.textAlign = 'center';
+            ctx.fillText('🤝', 44, 46);
+            
+            // Floating workout icons
+            ctx.fillStyle = 'rgba(255, 82, 82, 0.8)';
+            ctx.beginPath();
+            ctx.arc(65, 25, 8, 0, 2 * Math.PI);
+            ctx.fill();
+            ctx.fillStyle = 'white';
+            ctx.font = '8px Arial';
+            ctx.fillText('🏃', 65, 27);
+            
+            ctx.fillStyle = 'rgba(255, 82, 82, 0.8)';
+            ctx.beginPath();
+            ctx.arc(65, 55, 8, 0, 2 * Math.PI);
+            ctx.fill();
+            ctx.fillText('⏱️', 65, 57);
+            
+            // Main text
+            ctx.fillStyle = 'white';
+            ctx.font = 'bold 26px Arial';
+            ctx.textAlign = 'left';
+            ctx.fillText('TREN PAL', 85, 35);
+            
+            // Subtitle
+            ctx.fillStyle = '#ff5252';
+            ctx.font = 'bold 11px Arial';
+            ctx.fillText('WORKOUT BUDDY', 85, 55);
+            
+            // Buddy status
+            ctx.fillStyle = 'rgba(255, 82, 82, 0.2)';
+            roundRect(ctx, 320, 28, 60, 16, 8);
+            ctx.fill();
+            ctx.fillStyle = '#ff5252';
+            ctx.font = 'bold 8px Arial';
+            ctx.textAlign = 'center';
+            ctx.fillText('ONLINE', 350, 38);
+        }
+
+        // Logo 9: Elite Performance
+        function drawLogo9() {
+            const canvas = document.getElementById('logo9');
+            const ctx = canvas.getContext('2d');
+            drawBase(ctx);
+            
+            // Elite diamond shape
+            ctx.fillStyle = '#ff5252';
+            ctx.beginPath();
+            ctx.moveTo(44, 20);
+            ctx.lineTo(60, 40);
+            ctx.lineTo(44, 60);
+            ctx.lineTo(28, 40);
+            ctx.closePath();
+            ctx.fill();
+            
+            // Elite symbol
+            ctx.fillStyle = 'white';
+            ctx.font = 'bold 20px Arial';
+            ctx.textAlign = 'center';
+            ctx.fillText('E', 44, 46);
+            
+            // Main text
+            ctx.fillStyle = 'white';
+            ctx.font = 'bold 26px Arial';
+            ctx.textAlign = 'left';
+            ctx.fillText('TREN PAL', 85, 35);
+            
+            // Subtitle
+            ctx.fillStyle = '#ff5252';
+            ctx.font = 'bold 11px Arial';
+            ctx.fillText('ELITE PERFORMANCE', 85, 55);
+            
+            // Performance metrics
+            ctx.fillStyle = 'rgba(255, 82, 82, 0.1)';
+            roundRect(ctx, 310, 20, 80, 40, 8);
+            ctx.fill();
+            
+            ctx.fillStyle = '#ff5252';
+            ctx.font = 'bold 10px Arial';
+            ctx.textAlign = 'center';
+            ctx.fillText('PR: 405', 350, 32);
+            ctx.fillText('REP: 8', 350, 44);
+            ctx.fillText('SET: 3', 350, 56);
+        }
+
+        // Logo 10: Hardcore Gains
+        function drawLogo10() {
+            const canvas = document.getElementById('logo10');
+            const ctx = canvas.getContext('2d');
+            drawBase(ctx);
+            
+            // Hardcore multi-element design
+            const iconGradient = ctx.createLinearGradient(15, 15, 75, 65);
+            iconGradient.addColorStop(0, '#ff5252');
+            iconGradient.addColorStop(1, '#ff1744');
+            ctx.fillStyle = iconGradient;
+            roundRect(ctx, 15, 15, 60, 50, 8);
+            ctx.fill();
+            
+            // Hardcore elements
+            ctx.fillStyle = 'white';
+            ctx.font = 'bold 12px Arial';
+            ctx.textAlign = 'center';
+            ctx.fillText('🔥', 30, 30);
+            ctx.fillText('⚡', 45, 25);
+            ctx.fillText('💀', 60, 30);
+            ctx.fillText('🏋️', 30, 50);
+            ctx.fillText('💪', 45, 55);
+            ctx.fillText('🎯', 60, 50);
+            
+            // Main text
+            ctx.fillStyle = 'white';
+            ctx.font = 'bold 26px Arial';
+            ctx.textAlign = 'left';
+            ctx.fillText('TREN PAL', 90, 35);
+            
+            // Subtitle
+            ctx.fillStyle = '#ff5252';
+            ctx.font = 'bold 11px Arial';
+            ctx.fillText('HARDCORE GAINS', 90, 55);
+            
+            // Intensity meter
+            ctx.fillStyle = 'rgba(255, 82, 82, 0.2)';
+            roundRect(ctx, 320, 20, 60, 40, 8);
+            ctx.fill();
+            
+            ctx.fillStyle = '#ff5252';
+            ctx.font = 'bold 14px Arial';
+            ctx.textAlign = 'center';
+            ctx.fillText('MAX', 350, 35);
+            ctx.font = 'bold 8px Arial';
+            ctx.fillText('INTENSITY', 350, 48);
+        }
+
+        // Download function
+        function downloadLogo(canvasId, filename) {
+            const canvas = document.getElementById(canvasId);
+            const link = document.createElement('a');
+            link.download = filename;
+            link.href = canvas.toDataURL('image/png');
+            link.click();
+        }
+
+        // Draw all logos when page loads
+        window.onload = function() {
+            drawLogo1();
+            drawLogo2();
+            drawLogo3();
+            drawLogo4();
+            drawLogo5();
+            drawLogo6();
+            drawLogo7();
+            drawLogo8();
+            drawLogo9();
+            drawLogo10();
+        };
+    </script>
+</body>
+</html>

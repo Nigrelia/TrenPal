@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nutrition App Logo Downloads</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 20px;
+            background: #000;
+            font-family: 'Arial', sans-serif;
+            color: white;
+        }
+
+        .logo-gallery {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .logo-option {
+            background: linear-gradient(135deg, #404040 0%, #2A2A2A 100%);
+            border: 2px solid rgba(255, 82, 82, 0.6);
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 0 20px rgba(255, 82, 82, 0.3);
+        }
+
+        .logo-preview {
+            width: 400px;
+            height: 80px;
+            margin: 0 auto 20px auto;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        .download-btn {
+            background: linear-gradient(135deg, #ff5252 0%, #ff1744 100%);
+            border: none;
+            color: white;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-weight: bold;
+            cursor: pointer;
+            font-size: 14px;
+            letter-spacing: 0.5px;
+            transition: all 0.3s ease;
+            display: block;
+            margin: 0 auto;
+            text-decoration: none;
+            text-align: center;
+            width: 200px;
+        }
+
+        .download-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(255, 23, 68, 0.4);
+        }
+
+        .logo-title {
+            text-align: center;
+            color: #ff5252;
+            margin-bottom: 15px;
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        .logo-description {
+            text-align: center;
+            color: #ccc;
+            margin-bottom: 20px;
+            font-size: 14px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #ff5252;
+            margin-bottom: 40px;
+            font-size: 32px;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        }
+    </style>
+</head>
+<body>
+    <h1>🍎 Nutrition App Logo Collection</h1>
+    
+    <div class="logo-gallery">
+        <!-- Logo Option 1: Modern Gradient -->
+        <div class="logo-option">
+            <h3 class="logo-title">Modern Gradient Logo</h3>
+            <p class="logo-description">Clean design with food icon and gradient background</p>
+            <div class="logo-preview">
+                <canvas id="logo1" width="400" height="80"></canvas>
+            </div>
+            <button class="download-btn" onclick="downloadLogo('logo1', 'nutrition-logo-modern.png')">
+                📥 Download PNG
+            </button>
+        </div>
+
+        <!-- Logo Option 2: Data Visualization -->
+        <div class="logo-option">
+            <h3 class="logo-title">Data Chart Logo</h3>
+            <p class="logo-description">Features animated nutrition data bars</p>
+            <div class="logo-preview">
+                <canvas id="logo2" width="400" height="80"></canvas>
+            </div>
+            <button class="download-btn" onclick="downloadLogo('logo2', 'nutrition-logo-chart.png')">
+                📥 Download PNG
+            </button>
+        </div>
+
+        <!-- Logo Option 3: Minimalist -->
+        <div class="logo-option">
+            <h3 class="logo-title">Minimalist Logo</h3>
+            <p class="logo-description">Clean typography with subtle accents</p>
+            <div class="logo-preview">
+                <canvas id="logo3" width="400" height="80"></canvas>
+            </div>
+            <button class="download-btn" onclick="downloadLogo('logo3', 'nutrition-logo-minimal.png')">
+                📥 Download PNG
+            </button>
+        </div>
+
+        <!-- Logo Option 4: Tech Style -->
+        <div class="logo-option">
+            <h3 class="logo-title">Tech Database Logo</h3>
+            <p class="logo-description">Futuristic design with data elements</p>
+            <div class="logo-preview">
+                <canvas id="logo4" width="400" height="80"></canvas>
+            </div>
+            <button class="download-btn" onclick="downloadLogo('logo4', 'nutrition-logo-tech.png')">
+                📥 Download PNG
+            </button>
+        </div>
+
+        <!-- Logo Option 5: Food Focus -->
+        <div class="logo-option">
+            <h3 class="logo-title">Food Focus Logo</h3>
+            <p class="logo-description">Emphasizes food elements and nutrition</p>
+            <div class="logo-preview">
+                <canvas id="logo5" width="400" height="80"></canvas>
+            </div>
+            <button class="download-btn" onclick="downloadLogo('logo5', 'nutrition-logo-food.png')">
+                📥 Download PNG
+            </button>
+        </div>
+    </div>
+
+    <script>
+        // Logo 1: Modern Gradient
+        function drawLogo1() {
+            const canvas = document.getElementById('logo1');
+            const ctx = canvas.getContext('2d');
+            
+            // Clear canvas
+            ctx.clearRect(0, 0, 400, 80);
+            
+            // Background with rounded corners
+            ctx.fillStyle = createGradient(ctx, 0, 0, 400, 80, '#404040', '#2A2A2A');
+            roundRect(ctx, 0, 0, 400, 80, 12);
+            ctx.fill();
+            
+            // Glow effect
+            ctx.shadowColor = 'rgba(255, 82, 82, 0.3)';
+            ctx.shadowBlur = 20;
+            ctx.shadowOffsetX = 0;
+            ctx.shadowOffsetY = 0;
+            
+            // Border with rounded corners
+            ctx.strokeStyle = 'rgba(255, 82, 82, 0.6)';
+            ctx.lineWidth = 2;
+            roundRect(ctx, 1, 1, 398, 78, 12);
+            ctx.stroke();
+            
+            // Reset shadow
+            ctx.shadowColor = 'transparent';
+            ctx.shadowBlur = 0;
+            
+            // Icon background with rounded corners
+            const iconGradient = ctx.createLinearGradient(20, 16, 68, 64);
+            iconGradient.addColorStop(0, '#ff5252');
+            iconGradient.addColorStop(1, '#ff1744');
+            ctx.fillStyle = iconGradient;
+            roundRect(ctx, 20, 16, 48, 48, 8);
+            ctx.fill();
+            
+            // Icon
+            ctx.fillStyle = 'white';
+            ctx.font = 'bold 24px Arial';
+            ctx.textAlign = 'center';
+            ctx.fillText('🍎', 44, 46);
+            
+            // Main text
+            ctx.fillStyle = 'white';
+            ctx.font = 'bold 24px Arial';
+            ctx.textAlign = 'left';
+            ctx.fillText('NutriTrack', 85, 35);
+            
+            // Subtitle
+            ctx.fillStyle = '#ff5252';
+            ctx.font = 'bold 12px Arial';
+            ctx.fillText('NUTRITION EXPLORER', 85, 55);
+            
+            // Accent line with rounded ends
+            ctx.fillStyle = '#ff5252';
+            roundRect(ctx, 376, 20, 4, 40, 2);
+            ctx.fill();
+        }
+
+        // Logo 2: Data Chart
+        function drawLogo2() {
+            const canvas = document.getElementById('logo2');
+            const ctx = canvas.getContext('2d');
+            
+            ctx.clearRect(0, 0, 400, 80);
+            
+            // Background with rounded corners
+            ctx.fillStyle = createGradient(ctx, 0, 0, 400, 80, '#404040', '#2A2A2A');
+            roundRect(ctx, 0, 0, 400, 80, 12);
+            ctx.fill();
+            
+            // Glow effect
+            ctx.shadowColor = 'rgba(255, 82, 82, 0.3)';
+            ctx.shadowBlur = 20;
+            
+            // Border with rounded corners
+            ctx.strokeStyle = 'rgba(255, 82, 82, 0.6)';
+            ctx.lineWidth = 2;
+            roundRect(ctx, 1, 1, 398, 78, 12);
+            ctx.stroke();
+            
+            ctx.shadowColor = 'transparent';
+            ctx.shadowBlur = 0;
+            
+            // Chart bars with rounded tops
+            const barHeights = [20, 35, 28, 42, 25];
+            const barGradient = ctx.createLinearGradient(0, 20, 0, 60);
+            barGradient.addColorStop(0, '#ff8a80');
+            barGradient.addColorStop(1, '#ff5252');
+            
+            for (let i = 0; i < 5; i++) {
+                ctx.fillStyle = barGradient;
+                roundRect(ctx, 20 + i * 12, 60 - barHeights[i], 8, barHeights[i], 4);
+                ctx.fill();
+            }
+            
+            // Main text
+            ctx.fillStyle = 'white';
+            ctx.font = 'bold 26px Arial';
+            ctx.textAlign = 'left';
+            ctx.fillText('FoodData', 90, 35);
+            
+            // Subtitle
+            ctx.fillStyle = '#ff5252';
+            ctx.font = 'bold 11px Arial';
+            ctx.fillText('NUTRITION ANALYTICS', 90, 55);
+            
+            // Stats
+            ctx.fillStyle = '#ff5252';
+            ctx.font = 'bold 18px Arial';
+            ctx.textAlign = 'center';
+            ctx.fillText('1K+', 360, 35);
+            ctx.fillStyle = 'white';
+            ctx.font = 'bold 9px Arial';
+            ctx.fillText('FOODS', 360, 50);
+        }
+
+        // Logo 3: Minimalist
+        function drawLogo3() {
+            const canvas = document.getElementById('logo3');
+            const ctx = canvas.getContext('2d');
+            
+            ctx.clearRect(0, 0, 400, 80);
+            
+            // Background with rounded corners
+            ctx.fillStyle = createGradient(ctx, 0, 0, 400, 80, '#404040', '#2A2A2A');
+            roundRect(ctx, 0, 0, 400, 80, 12);
+            ctx.fill();
+            
+            // Glow effect
+            ctx.shadowColor = 'rgba(255, 82, 82, 0.3)';
+            ctx.shadowBlur = 20;
+            
+            // Border with rounded corners
+            ctx.strokeStyle = 'rgba(255, 82, 82, 0.6)';
+            ctx.lineWidth = 2;
+            roundRect(ctx, 1, 1, 398, 78, 12);
+            ctx.stroke();
+            
+            ctx.shadowColor = 'transparent';
+            ctx.shadowBlur = 0;
+            
+            // Main text
+            ctx.fillStyle = 'white';
+            ctx.font = 'bold 32px Arial';
+            ctx.textAlign = 'center';
+            ctx.fillText('NUTRIFY', 200, 35);
+            
+            // Underline with rounded ends
+            const lineGradient = ctx.createLinearGradient(170, 42, 230, 42);
+            lineGradient.addColorStop(0, 'transparent');
+            lineGradient.addColorStop(0.5, '#ff5252');
+            lineGradient.addColorStop(1, 'transparent');
+            ctx.strokeStyle = lineGradient;
+            ctx.lineWidth = 3;
+            ctx.lineCap = 'round';
+            ctx.beginPath();
+            ctx.moveTo(170, 42);
+            ctx.lineTo(230, 42);
+            ctx.stroke();
+            
+            // Subtitle
+            ctx.fillStyle = '#ff5252';
+            ctx.font = 'bold 12px Arial';
+            ctx.fillText('FOOD INTELLIGENCE', 200, 58);
+            
+            // Side circles with glow
+            ctx.shadowColor = 'rgba(255, 82, 82, 0.4)';
+            ctx.shadowBlur = 8;
+            ctx.strokeStyle = 'rgba(255, 82, 82, 0.6)';
+            ctx.lineWidth = 2;
+            ctx.beginPath();
+            ctx.arc(30, 40, 15, 0, 2 * Math.PI);
+            ctx.stroke();
+            ctx.fillStyle = '#ff5252';
+            ctx.beginPath();
+            ctx.arc(30, 40, 4, 0, 2 * Math.PI);
+            ctx.fill();
+            
+            ctx.beginPath();
+            ctx.arc(370, 40, 15, 0, 2 * Math.PI);
+            ctx.stroke();
+            ctx.fillStyle = '#ff5252';
+            ctx.beginPath();
+            ctx.arc(370, 40, 4, 0, 2 * Math.PI);
+            ctx.fill();
+            
+            ctx.shadowColor = 'transparent';
+            ctx.shadowBlur = 0;
+        }
+
+        // Logo 4: Tech Database
+        function drawLogo4() {
+            const canvas = document.getElementById('logo4');
+            const ctx = canvas.getContext('2d');
+            
+            ctx.clearRect(0, 0, 400, 80);
+            
+            // Background with rounded corners
+            ctx.fillStyle = createGradient(ctx, 0, 0, 400, 80, '#404040', '#2A2A2A');
+            roundRect(ctx, 0, 0, 400, 80, 12);
+            ctx.fill();
+            
+            // Glow effect
+            ctx.shadowColor = 'rgba(255, 82, 82, 0.3)';
+            ctx.shadowBlur = 20;
+            
+            // Border with rounded corners
+            ctx.strokeStyle = 'rgba(255, 82, 82, 0.6)';
+            ctx.lineWidth = 2;
+            roundRect(ctx, 1, 1, 398, 78, 12);
+            ctx.stroke();
+            
+            ctx.shadowColor = 'transparent';
+            ctx.shadowBlur = 0;
+            
+            // Hexagon icon with glow
+            ctx.shadowColor = 'rgba(255, 82, 82, 0.4)';
+            ctx.shadowBlur = 10;
+            ctx.fillStyle = '#ff5252';
+            ctx.beginPath();
+            ctx.moveTo(44, 20);
+            ctx.lineTo(56, 20);
+            ctx.lineTo(62, 30);
+            ctx.lineTo(62, 50);
+            ctx.lineTo(56, 60);
+            ctx.lineTo(44, 60);
+            ctx.lineTo(38, 50);
+            ctx.lineTo(38, 30);
+            ctx.closePath();
+            ctx.fill();
+            
+            ctx.shadowColor = 'transparent';
+            ctx.shadowBlur = 0;
+            
+            // Icon symbol
+            ctx.fillStyle = 'white';
+            ctx.font = 'bold 20px Arial';
+            ctx.textAlign = 'center';
+            ctx.fillText('⚡', 50, 46);
+            
+            // Main text
+            ctx.fillStyle = 'white';
+            ctx.font = 'bold 26px Courier New, monospace';
+            ctx.textAlign = 'left';
+            ctx.fillText('NUTRI.DB', 80, 35);
+            
+            // Subtitle
+            ctx.fillStyle = '#ff5252';
+            ctx.font = 'bold 11px Arial';
+            ctx.fillText('DATABASE SYSTEM', 80, 55);
+            
+            // Data stream lines with rounded ends
+            const streamGradient = ctx.createLinearGradient(320, 0, 380, 0);
+            streamGradient.addColorStop(0, 'transparent');
+            streamGradient.addColorStop(0.5, '#ff5252');
+            streamGradient.addColorStop(1, 'transparent');
+            
+            ctx.strokeStyle = streamGradient;
+            ctx.lineWidth = 3;
+            ctx.lineCap = 'round';
+            for (let i = 0; i < 4; i++) {
+                ctx.beginPath();
+                ctx.moveTo(320, 25 + i * 8);
+                ctx.lineTo(320 + (30 - i * 5), 25 + i * 8);
+                ctx.stroke();
+            }
+        }
+
+        // Logo 5: Food Focus
+        function drawLogo5() {
+            const canvas = document.getElementById('logo5');
+            const ctx = canvas.getContext('2d');
+            
+            ctx.clearRect(0, 0, 400, 80);
+            
+            // Background with rounded corners
+            ctx.fillStyle = createGradient(ctx, 0, 0, 400, 80, '#404040', '#2A2A2A');
+            roundRect(ctx, 0, 0, 400, 80, 12);
+            ctx.fill();
+            
+            // Glow effect
+            ctx.shadowColor = 'rgba(255, 82, 82, 0.3)';
+            ctx.shadowBlur = 20;
+            
+            // Border with rounded corners
+            ctx.strokeStyle = 'rgba(255, 82, 82, 0.6)';
+            ctx.lineWidth = 2;
+            roundRect(ctx, 1, 1, 398, 78, 12);
+            ctx.stroke();
+            
+            ctx.shadowColor = 'transparent';
+            ctx.shadowBlur = 0;
+            
+            // Main icon circle with glow
+            ctx.shadowColor = 'rgba(255, 82, 82, 0.4)';
+            ctx.shadowBlur = 10;
+            const iconGradient = ctx.createLinearGradient(20, 16, 68, 64);
+            iconGradient.addColorStop(0, '#ff5252');
+            iconGradient.addColorStop(1, '#ff1744');
+            ctx.fillStyle = iconGradient;
+            ctx.beginPath();
+            ctx.arc(44, 40, 24, 0, 2 * Math.PI);
+            ctx.fill();
+            
+            ctx.shadowColor = 'transparent';
+            ctx.shadowBlur = 0;
+            
+            // Chart icon
+            ctx.fillStyle = 'white';
+            ctx.font = 'bold 24px Arial';
+            ctx.textAlign = 'center';
+            ctx.fillText('📊', 44, 46);
+            
+            // Floating mini icons
+            ctx.fillStyle = 'rgba(255, 82, 82, 0.8)';
+            ctx.beginPath();
+            ctx.arc(65, 25, 10, 0, 2 * Math.PI);
+            ctx.fill();
+            ctx.fillStyle = 'white';
+            ctx.font = '10px Arial';
+            ctx.fillText('🥗', 65, 28);
+            
+            ctx.fillStyle = 'rgba(255, 82, 82, 0.8)';
+            ctx.beginPath();
+            ctx.arc(65, 55, 10, 0, 2 * Math.PI);
+            ctx.fill();
+            ctx.fillStyle = 'white';
+            ctx.fillText('🍎', 65, 58);
+            
+            // Main text
+            ctx.fillStyle = 'white';
+            ctx.font = 'bold 28px Arial';
+            ctx.textAlign = 'left';
+            ctx.fillText('NutriBase', 90, 35);
+            
+            // Subtitle
+            ctx.fillStyle = '#ff5252';
+            ctx.font = 'bold 11px Arial';
+            ctx.fillText('SMART FOOD DATABASE', 90, 55);
+            
+            // Pro badge with rounded corners
+            ctx.fillStyle = 'rgba(255, 82, 82, 0.2)';
+            roundRect(ctx, 320, 28, 60, 24, 12);
+            ctx.fill();
+            ctx.strokeStyle = 'rgba(255, 82, 82, 0.4)';
+            ctx.lineWidth = 1;
+            roundRect(ctx, 320, 28, 60, 24, 12);
+            ctx.stroke();
+            ctx.fillStyle = '#ff5252';
+            ctx.font = 'bold 10px Arial';
+            ctx.textAlign = 'center';
+            ctx.fillText('PRO', 350, 42);
+        }
+
+        // Helper functions
+        function createGradient(ctx, x1, y1, x2, y2, color1, color2) {
+            const gradient = ctx.createLinearGradient(x1, y1, x2, y2);
+            gradient.addColorStop(0, color1);
+            gradient.addColorStop(1, color2);
+            return gradient;
+        }
+
+        function roundRect(ctx, x, y, width, height, radius) {
+            ctx.beginPath();
+            ctx.moveTo(x + radius, y);
+            ctx.lineTo(x + width - radius, y);
+            ctx.quadraticCurveTo(x + width, y, x + width, y + radius);
+            ctx.lineTo(x + width, y + height - radius);
+            ctx.quadraticCurveTo(x + width, y + height, x + width - radius, y + height);
+            ctx.lineTo(x + radius, y + height);
+            ctx.quadraticCurveTo(x, y + height, x, y + height - radius);
+            ctx.lineTo(x, y + radius);
+            ctx.quadraticCurveTo(x, y, x + radius, y);
+            ctx.closePath();
+        }
+
+        // Download function
+        function downloadLogo(canvasId, filename) {
+            const canvas = document.getElementById(canvasId);
+            const link = document.createElement('a');
+            link.download = filename;
+            link.href = canvas.toDataURL('image/png');
+            link.click();
+        }
+
+        // Draw all logos when page loads
+        window.onload = function() {
+            drawLogo1();
+            drawLogo2();
+            drawLogo3();
+            drawLogo4();
+            drawLogo5();
+        };
+    </script>
+</body>
+</html>

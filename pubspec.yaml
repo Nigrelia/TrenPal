@@ -1,0 +1,61 @@
+name: trenpal
+description: "A new Flutter project."
+
+publish_to: 'none'
+
+version: 1.0.0+1
+
+environment:
+  sdk: ^3.8.1
+
+dependencies:
+  flutter:
+    sdk: flutter
+  
+  # UI Dependencies
+  cupertino_icons: ^1.0.8
+  percent_indicator: ^4.2.2
+  
+  # Firebase Dependencies
+  firebase_auth: ^5.7.0
+  cloud_firestore: ^5.6.12
+  firebase_core: ^3.15.2
+  
+  # Utility Dependencies
+  intl: ^0.18.1
+  http: ^1.1.0  # Updated to latest version for better null safety
+  provider: ^6.1.1
+  json_annotation: ^4.8.1
+  shared_preferences: ^2.2.2
+
+dev_dependencies:
+  build_runner: ^2.4.6
+  json_serializable: ^6.7.1
+  flutter_launcher_icons: ^0.13.1
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^6.0.0
+
+flutter:
+  uses-material-design: true
+  
+  assets:
+    - assets/img/app_logo.png
+    - assets/img/signup_logo.png
+    - assets/img/resetpass.png
+    - assets/img/dashboard1logo.png
+    - assets/foundation_foods.json
+    - assets/foods_database.csv
+    - assets/nut_data.csv
+    - assets/FOOD-DATA-GROUP1.csv
+    - assets/FOOD-DATA-GROUP2.csv
+    - assets/FOOD-DATA-GROUP3.csv
+    - assets/FOOD-DATA-GROUP4.csv
+    - assets/FOOD-DATA-GROUP5.csv
+    - assets/img/nutl.png
+    - assets/foods.json
+
+flutter_icons:
+  android: true
+  ios: true
+  image_path: "assets/img/trenicon.png"

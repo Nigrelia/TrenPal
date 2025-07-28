@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "21452963225",
+    "project_id": "trenpal-d8993",
+    "storage_bucket": "trenpal-d8993.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:21452963225:android:baba07416db31e4e1aa708",
+        "android_client_info": {
+          "package_name": "com.example.trenpal"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD535V4bbL6VfWu0pzy3P_fdaQc_dY89Tc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
