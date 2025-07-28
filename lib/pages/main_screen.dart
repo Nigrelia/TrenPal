@@ -200,7 +200,7 @@ class _MainScreenState extends State<MainScreen> {
                   ),
 
                   TrenPalButton(
-                    text: "yosri weben",
+                    text: "Login",
                     onPressed: () async {
                       await signin(
                         context,
