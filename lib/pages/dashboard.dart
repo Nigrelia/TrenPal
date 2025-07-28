@@ -11,6 +11,8 @@ import '../custom widgets/tren_popup.dart';
 import 'main_screen.dart';
 import 'calories_page.dart';
 
+import 'package:shared_preferences/shared_preferences.dart';
+
 class TrenDashboard extends StatefulWidget {
   const TrenDashboard({super.key});
 
@@ -68,9 +70,13 @@ class _TrenDashboardState extends State<TrenDashboard> {
   }
 
   Future<void> _performLogout() async {
+    final prefs = await SharedPreferences.getInstance();
+    bool _isChecked = prefs.getBool('rememberMe') ?? false;
     try {
       await FirebaseAuth.instance.signOut();
       if (mounted) {
+        _isChecked = false;
+        await prefs.setBool('rememberMe', _isChecked);
         Navigator.pushAndRemoveUntil(
           context,
           MaterialPageRoute(builder: (context) => MainScreen()),
