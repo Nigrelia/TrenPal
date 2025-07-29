@@ -1,4 +1,5 @@
 import 'package:trenpal/custom%20widgets/tren_button.dart';
+import 'package:trenpal/custom%20widgets/tren_macros_popup.dart';
 import '../custom widgets/calories_tracker.dart';
 import 'package:trenpal/custom%20widgets/macros_tracker.dart';
 import 'package:flutter/material.dart';
@@ -14,6 +15,20 @@ class CaloriesTrackerPage extends StatelessWidget {
   final int fatsGoal;
   final VoidCallback onChangeGoal;
   final VoidCallback onFastLog;
+  final VoidCallback onUpdateMacros;
+  void _showMacrosPopup(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (context) => MacrosPopup(
+        initialProtein: 50,
+        initialCarbs: 100,
+        initialFats: 70,
+        onUpdate: (protein, carbs, fats) {
+          print("Protein: $protein g, Carbs: $carbs g, Fats: $fats g");
+        },
+      ),
+    );
+  }
 
   const CaloriesTrackerPage({
     super.key,
@@ -27,6 +42,7 @@ class CaloriesTrackerPage extends StatelessWidget {
     required this.fatsGoal,
     required this.onChangeGoal,
     required this.onFastLog,
+    required this.onUpdateMacros,
   });
 
   @override
@@ -37,11 +53,11 @@ class CaloriesTrackerPage extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         children: [
           const SizedBox(height: 50),
-          Image.asset("assets/img/dashboard1logo.png", height: 80, width: 400),
+          Image.asset("assets/img/dashboard1logo.png", height: 100, width: 300),
           const SizedBox(height: 5),
           TrenTracker(
             width: 365,
-            height: 356,
+            height: 360,
             calories: calories,
             calorieGoal: calorieGoal,
           ),
@@ -56,7 +72,7 @@ class CaloriesTrackerPage extends StatelessWidget {
             proteinGoal: proteinGoal,
             fatsGoal: fatsGoal,
           ),
-          const SizedBox(height: 20),
+          const SizedBox(height: 30),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
@@ -82,6 +98,17 @@ class CaloriesTrackerPage extends StatelessWidget {
                 },
               ),
             ],
+          ),
+          SizedBox(height: 20),
+          TrenPalButton(
+            icon: Icons.edit,
+            width: 360,
+            height: 50,
+            showLoading: false,
+            text: "Adjust Macros",
+            onPressed: () async {
+              onUpdateMacros();
+            },
           ),
           const SizedBox(height: 50),
         ],

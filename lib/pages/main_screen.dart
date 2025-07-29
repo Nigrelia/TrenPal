@@ -80,13 +80,19 @@ class _MainScreenState extends State<MainScreen> {
         data['lastResetDate'] ?? data['creationDate'] ?? Timestamp.now();
     final now = Timestamp.now();
 
-    final secondsPassed = now.seconds - lastReset.seconds;
-    if (secondsPassed >= 24 * 3600) {
+    final dayNow = now.toDate().day;
+    final monthnow = now.toDate().month;
+    final yearnow = now.toDate().year;
+    final Regday = lastReset.toDate().day;
+    final Regmonth = lastReset.toDate().month;
+    final regyear = lastReset.toDate().year;
+
+    if (regyear != yearnow || Regday != dayNow || Regmonth != monthnow) {
       await userDoc.update({
-        "currentIntake": "0",
-        "carbs": "0",
-        "protein": "0",
-        "fats": "0",
+        "currentIntake": 0,
+        "carbs": 0,
+        "protein": 0,
+        "fats": 0,
         "lastResetDate": now,
       });
       print('Macros reset successfully');
@@ -105,7 +111,7 @@ class _MainScreenState extends State<MainScreen> {
         email: email,
         password: password,
       );
-
+      await resetMacros(FirebaseAuth.instance.currentUser!.uid);
       await _saveCredentials(_isChecked);
 
       TrenAlerts.success(context, "Welcome back to TrenPal!");
@@ -113,8 +119,6 @@ class _MainScreenState extends State<MainScreen> {
         context,
         MaterialPageRoute(builder: (context) => TrenDashboard()),
       );
-
-      resetMacros(FirebaseAuth.instance.currentUser!.uid);
     } on FirebaseAuthException catch (e) {
       if (email.isEmpty || password.isEmpty) {
         TrenAlerts.error(context, "Fill all fields");

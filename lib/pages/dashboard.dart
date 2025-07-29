@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:trenpal/custom%20widgets/tren_macros_popup.dart';
 import 'food_page.dart';
 
 import 'package:trenpal/custom%20widgets/safe_v2.dart';
@@ -12,6 +13,7 @@ import 'main_screen.dart';
 import 'calories_page.dart';
 
 import 'package:shared_preferences/shared_preferences.dart';
+import 'account_page.dart';
 
 class TrenDashboard extends StatefulWidget {
   const TrenDashboard({super.key});
@@ -148,6 +150,39 @@ class _TrenDashboardState extends State<TrenDashboard> {
     );
   }
 
+  void updateMacros(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (context) => MacrosPopup(
+        initialProtein: proteinGoal,
+        initialCarbs: carbsGoal,
+        initialFats: fatsGoal,
+        onUpdate: (protein, carbs, fats) {
+          setState(() {
+            proteinGoal = protein;
+            carbsGoal = carbs;
+            fatsGoal = fats;
+          });
+
+          updateMacrosDB(protein, fats, carbs);
+        },
+      ),
+    );
+  }
+
+  Future<void> updateMacrosDB(int pot, int fa, int car) async {
+    String uid = FirebaseAuth.instance.currentUser!.uid;
+    final userDoc = FirebaseFirestore.instance.collection('users').doc(uid);
+
+    await userDoc.update({
+      "proteinGoal": pot,
+      "fatsGoal": fa,
+      "carbsGoal": car,
+    });
+
+    TrenAlerts.success(context, "Success");
+  }
+
   void showMacrosDialog(BuildContext context, int c, int p, int f, int cc) {
     showDialog(
       context: context,
@@ -177,6 +212,7 @@ class _TrenDashboardState extends State<TrenDashboard> {
       fatsGoal: fatsGoal,
       onChangeGoal: () => showTrenPalPopup(context),
       onFastLog: () => showFastLogPopup(context),
+      onUpdateMacros: () => updateMacros(context),
     ),
     FoodsPage(
       calories: calories,
@@ -370,20 +406,6 @@ class _TrenDashboardState extends State<TrenDashboard> {
 
 class AICoachPage extends StatelessWidget {
   const AICoachPage({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return const Center(
-      child: Text(
-        'Incoming ...',
-        style: TextStyle(color: Colors.white, fontSize: 20),
-      ),
-    );
-  }
-}
-
-class AccountPage extends StatelessWidget {
-  const AccountPage({super.key});
 
   @override
   Widget build(BuildContext context) {
