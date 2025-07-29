@@ -298,6 +298,7 @@ class _SignupScreenState extends State<SignupScreen> {
                 ),
                 const SizedBox(height: 20),
                 TrenPalButton(
+                  icon: Icons.person_add,
                   text: 'Sign up',
                   onPressed: () async {
                     signup(context);

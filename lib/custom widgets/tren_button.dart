@@ -6,6 +6,7 @@ class TrenPalButton extends StatefulWidget {
   final double? width;
   final double? height;
   final bool showLoading;
+  final IconData? icon; // ✅ Optional icon
 
   const TrenPalButton({
     super.key,
@@ -14,6 +15,7 @@ class TrenPalButton extends StatefulWidget {
     this.width,
     this.height,
     this.showLoading = false,
+    this.icon,
   });
 
   @override
@@ -98,13 +100,11 @@ class _TrenPalButtonState extends State<TrenPalButton>
 
   @override
   Widget build(BuildContext context) {
-    // Get screen dimensions for responsiveness
     final screenSize = MediaQuery.of(context).size;
     final screenWidth = screenSize.width;
     final screenHeight = screenSize.height;
     final orientation = MediaQuery.of(context).orientation;
 
-    // Calculate responsive dimensions
     double responsiveWidth;
     double responsiveHeight;
 
@@ -123,12 +123,10 @@ class _TrenPalButtonState extends State<TrenPalButton>
       responsiveHeight = responsiveHeight.clamp(50.0, 80.0);
     }
 
-    // Scale other elements
     double borderRadius = responsiveWidth * 0.04;
     double fontSize = responsiveHeight * 0.28;
     double iconSize = responsiveHeight * 0.35;
 
-    // Ensure minimum readable sizes
     borderRadius = borderRadius.clamp(8.0, 16.0);
     fontSize = fontSize.clamp(14.0, 18.0);
     iconSize = iconSize.clamp(18.0, 24.0);
@@ -222,21 +220,41 @@ class _TrenPalButtonState extends State<TrenPalButton>
                             ),
                           ],
                         )
-                      : Text(
-                          widget.text,
-                          style: TextStyle(
-                            color: isDisabled
-                                ? Colors.grey[600]
-                                : _pressed
-                                ? Colors.white
-                                : Colors.grey[300],
-                            fontWeight: FontWeight.w600,
-                            fontSize: fontSize,
-                            letterSpacing: 0.5,
-                          ),
-                          textAlign: TextAlign.center,
-                          overflow: TextOverflow.ellipsis,
-                          maxLines: 1,
+                      : Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            if (widget.icon != null) ...[
+                              Icon(
+                                widget.icon,
+                                size: iconSize,
+                                color: isDisabled
+                                    ? Colors.grey[600]
+                                    : _pressed
+                                    ? Colors.white
+                                    : Colors.grey[300],
+                              ),
+                              SizedBox(width: responsiveWidth * 0.03),
+                            ],
+                            Flexible(
+                              child: Text(
+                                widget.text,
+                                style: TextStyle(
+                                  color: isDisabled
+                                      ? Colors.grey[600]
+                                      : _pressed
+                                      ? Colors.white
+                                      : Colors.grey[300],
+                                  fontWeight: FontWeight.w600,
+                                  fontSize: fontSize,
+                                  letterSpacing: 0.5,
+                                ),
+                                textAlign: TextAlign.center,
+                                overflow: TextOverflow.ellipsis,
+                                maxLines: 1,
+                              ),
+                            ),
+                          ],
                         ),
                 ),
               ),

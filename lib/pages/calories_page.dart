@@ -61,6 +61,7 @@ class CaloriesTrackerPage extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               TrenPalButton(
+                icon: Icons.tune,
                 width: 172,
                 height: 50,
                 showLoading: false,
@@ -71,6 +72,7 @@ class CaloriesTrackerPage extends StatelessWidget {
               ),
               const SizedBox(width: 10),
               TrenPalButton(
+                icon: Icons.add_circle,
                 width: 172,
                 height: 50,
                 showLoading: false,
