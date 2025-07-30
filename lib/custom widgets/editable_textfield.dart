@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'dart:math';
 
 class EditableGrayTextField extends StatefulWidget {
   final String prompt;
@@ -8,6 +7,7 @@ class EditableGrayTextField extends StatefulWidget {
   final TextEditingController? controller;
   final bool initiallyEditable;
   final String? initialText;
+  final InputType inputType; // New parameter for input type
 
   const EditableGrayTextField({
     super.key,
@@ -17,11 +17,14 @@ class EditableGrayTextField extends StatefulWidget {
     this.controller,
     this.initiallyEditable = false,
     this.initialText,
+    this.inputType = InputType.text, // Default to text
   });
 
   @override
   State<EditableGrayTextField> createState() => _EditableGrayTextFieldState();
 }
+
+enum InputType { text, password, email }
 
 class _EditableGrayTextFieldState extends State<EditableGrayTextField>
     with SingleTickerProviderStateMixin {
@@ -32,14 +35,35 @@ class _EditableGrayTextFieldState extends State<EditableGrayTextField>
   bool _isEditable = false;
   bool _isFocused = false;
   bool _isControllerInternal = false;
+  bool _showPassword = false;
 
   bool get _hasText => _controller.text.trim().isNotEmpty;
   bool get _showLabel => _hasText || _isFocused;
 
+  String get _displayText {
+    if (_isEditable) return _controller.text;
+
+    if (widget.inputType == InputType.password && !_isEditable) {
+      return '•' * _controller.text.length;
+    } else if (widget.inputType == InputType.email && !_isEditable) {
+      if (_controller.text.isEmpty) return '';
+      final parts = _controller.text.split('@');
+      if (parts.length != 2) return _controller.text;
+
+      final username = parts[0];
+      final domain = parts[1];
+      final maskedUsername = username.length > 3
+          ? '${username.substring(0, 3)}${'•' * (username.length - 3)}'
+          : '•' * username.length;
+
+      return '$maskedUsername@$domain';
+    }
+    return _controller.text;
+  }
+
   @override
   void initState() {
     super.initState();
-
     _isEditable = widget.initiallyEditable;
 
     _controller =
@@ -76,10 +100,19 @@ class _EditableGrayTextFieldState extends State<EditableGrayTextField>
   void _toggleEditable() {
     setState(() {
       _isEditable = !_isEditable;
+      if (widget.inputType == InputType.password) {
+        _showPassword = _isEditable;
+      }
     });
 
     Future.delayed(Duration.zero, () {
       _isEditable ? _focusNode.requestFocus() : _focusNode.unfocus();
+    });
+  }
+
+  void _togglePasswordVisibility() {
+    setState(() {
+      _showPassword = !_showPassword;
     });
   }
 
@@ -101,8 +134,8 @@ class _EditableGrayTextFieldState extends State<EditableGrayTextField>
               decoration: BoxDecoration(
                 gradient: LinearGradient(
                   colors: _isFocused
-                      ? [Color(0xFF444444), Color(0xFF222222)]
-                      : [Color(0xFF2A2A2A), Color(0xFF1A1A1A)],
+                      ? [const Color(0xFF444444), const Color(0xFF222222)]
+                      : [const Color(0xFF2A2A2A), const Color(0xFF1A1A1A)],
                   begin: Alignment.topLeft,
                   end: Alignment.bottomRight,
                 ),
@@ -130,6 +163,12 @@ class _EditableGrayTextFieldState extends State<EditableGrayTextField>
                       controller: _controller,
                       focusNode: _focusNode,
                       enabled: _isEditable,
+                      obscureText: widget.inputType == InputType.password
+                          ? !_showPassword
+                          : false,
+                      keyboardType: widget.inputType == InputType.email
+                          ? TextInputType.emailAddress
+                          : TextInputType.text,
                       cursorColor: Colors.redAccent,
                       style: TextStyle(
                         color: _isEditable ? Colors.white : Colors.grey[500],
@@ -149,6 +188,15 @@ class _EditableGrayTextFieldState extends State<EditableGrayTextField>
                       ),
                     ),
                   ),
+                  if (widget.inputType == InputType.password && _isEditable)
+                    IconButton(
+                      icon: Icon(
+                        _showPassword ? Icons.visibility : Icons.visibility_off,
+                        color: _isFocused ? Colors.redAccent : Colors.grey[400],
+                      ),
+                      onPressed: _togglePasswordVisibility,
+                      splashRadius: 20,
+                    ),
                   IconButton(
                     icon: AnimatedSwitcher(
                       duration: const Duration(milliseconds: 200),

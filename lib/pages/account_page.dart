@@ -21,13 +21,30 @@ class _AccountPageState extends State<AccountPage> {
   Widget build(BuildContext context) {
     return Center(
       child: Column(
-        mainAxisSize: MainAxisSize.min,
+        mainAxisAlignment: MainAxisAlignment.start,
+
         children: [
           EditableGrayTextField(
-            prompt: 'Username',
+            prompt: 'Usernammnne',
             controller: _usernameController,
             initiallyEditable: false,
             initialText: "hello",
+          ),
+
+          EditableGrayTextField(
+            prompt: 'Email',
+            controller: _usernameController,
+            initiallyEditable: false,
+            initialText: "helloxxxx@gmail.com",
+            inputType: InputType.email,
+          ),
+
+          EditableGrayTextField(
+            prompt: 'Password',
+            controller: _usernameController,
+            initiallyEditable: false,
+            initialText: "hello",
+            inputType: InputType.password,
           ),
         ],
       ),
