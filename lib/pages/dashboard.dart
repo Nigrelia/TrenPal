@@ -14,6 +14,7 @@ import 'calories_page.dart';
 
 import 'package:shared_preferences/shared_preferences.dart';
 import 'account_page.dart';
+import 'meals_page.dart';
 
 class TrenDashboard extends StatefulWidget {
   const TrenDashboard({super.key});
@@ -73,12 +74,12 @@ class _TrenDashboardState extends State<TrenDashboard> {
 
   Future<void> _performLogout() async {
     final prefs = await SharedPreferences.getInstance();
-    bool _isChecked = prefs.getBool('rememberMe') ?? false;
+    bool isChecked = prefs.getBool('rememberMe') ?? false;
     try {
       await FirebaseAuth.instance.signOut();
       if (mounted) {
-        _isChecked = false;
-        await prefs.setBool('rememberMe', _isChecked);
+        isChecked = false;
+        await prefs.setBool('rememberMe', isChecked);
         Navigator.pushAndRemoveUntil(
           context,
           MaterialPageRoute(builder: (context) => MainScreen()),
@@ -226,7 +227,7 @@ class _TrenDashboardState extends State<TrenDashboard> {
       onUpdateMacros: UpdateMacros,
       onshowMacrosDialog: showMacrosDialog,
     ),
-    const AICoachPage(),
+    const MealsPage(),
     const AccountPage(),
   ];
 
@@ -387,7 +388,7 @@ class _TrenDashboardState extends State<TrenDashboard> {
               badgeCount: 0,
             ),
             BottomNavItem(
-              label: 'AI Coach',
+              label: 'My Meals',
               icon: Icons.auto_awesome_rounded,
               badgeCount: 0,
             ),
@@ -399,20 +400,6 @@ class _TrenDashboardState extends State<TrenDashboard> {
           ],
           activeColor: Colors.redAccent,
         ),
-      ),
-    );
-  }
-}
-
-class AICoachPage extends StatelessWidget {
-  const AICoachPage({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return const Center(
-      child: Text(
-        'Incoming ...',
-        style: TextStyle(color: Colors.white, fontSize: 20),
       ),
     );
   }

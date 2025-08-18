@@ -54,6 +54,7 @@ flutter:
     - assets/FOOD-DATA-GROUP5.csv
     - assets/img/nutl.png
     - assets/foods.json
+    - assets/img/meals.png
 
 flutter_icons:
   android: true

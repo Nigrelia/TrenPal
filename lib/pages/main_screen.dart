@@ -33,12 +33,12 @@ class _MainScreenState extends State<MainScreen> {
 
   void rememberScreen(BuildContext context) async {
     final prefs = await SharedPreferences.getInstance();
-    final _isChecked = prefs.getBool('rememberMe') ?? false;
+    final isChecked = prefs.getBool('rememberMe') ?? false;
     String email = prefs.getString('savedEmail') ?? '';
     String password = prefs.getString('savedPassword') ?? '';
 
-    if (_isChecked) {
-      await (context, email, password);
+    if (isChecked) {
+      (context, email, password);
       Navigator.pushReplacement(
         context,
         MaterialPageRoute(builder: (context) => TrenDashboard()),
@@ -140,7 +140,14 @@ class _MainScreenState extends State<MainScreen> {
                 mainAxisSize: MainAxisSize.max,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  Image.asset("assets/img/app_logo.png", width: 280),
+                  ColorFiltered(
+                    colorFilter: const ColorFilter.mode(
+                      Colors.transparent,
+                      BlendMode.lighten,
+                    ),
+                    child: Image.asset("assets/img/app_logo.png", width: 280),
+                  ),
+
                   const SizedBox(height: 40),
 
                   AnimatedGrayTextField(

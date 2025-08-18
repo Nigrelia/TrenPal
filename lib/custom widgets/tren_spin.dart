@@ -11,7 +11,7 @@ class TrenSpin extends StatefulWidget {
   final int maxValue;
   final int step;
   final ValueChanged<int>? onChanged;
-  final TextEditingController? controller; // 🔥 NEW PARAMETER
+  final TextEditingController? controller;
 
   const TrenSpin({
     super.key,
@@ -23,7 +23,7 @@ class TrenSpin extends StatefulWidget {
     this.maxValue = 10000,
     this.step = 1,
     this.onChanged,
-    this.controller, // 🔥 OPTIONAL CONTROLLER
+    this.controller,
   });
 
   @override
@@ -37,25 +37,22 @@ class _TrenSpinState extends State<TrenSpin>
   bool _isFocused = false;
   late int _currentValue;
   late AnimationController _animationController;
-  bool _isControllerInternal = false; // Track if we created the controller
+  bool _isControllerInternal = false;
 
-  bool get shouldShowFloatingLabel =>
-      _isFocused || _currentValue != widget.initialValue;
+  // 🔹 Label always visible
+  bool get shouldShowFloatingLabel => true;
 
   @override
   void initState() {
     super.initState();
     _currentValue = widget.initialValue;
 
-    // 🔥 USE PROVIDED CONTROLLER OR CREATE NEW ONE
     if (widget.controller != null) {
       _controller = widget.controller!;
       _isControllerInternal = false;
-      // Set initial value if controller is empty
       if (_controller.text.isEmpty) {
         _controller.text = _currentValue.toString();
       } else {
-        // Use controller's current value
         int? controllerValue = int.tryParse(_controller.text);
         if (controllerValue != null) {
           _currentValue = controllerValue.clamp(
@@ -78,7 +75,6 @@ class _TrenSpinState extends State<TrenSpin>
       setState(() => _isFocused = _focusNode.hasFocus);
       if (_isFocused) {
         _animationController.forward();
-        // Select all text when focused
         _controller.selection = TextSelection(
           baseOffset: 0,
           extentOffset: _controller.text.length,
@@ -90,7 +86,6 @@ class _TrenSpinState extends State<TrenSpin>
     });
 
     _controller.addListener(() {
-      // Only update if the text is different from current value
       if (_controller.text != _currentValue.toString()) {
         _validateAndUpdateValue();
       }
@@ -108,7 +103,6 @@ class _TrenSpinState extends State<TrenSpin>
     if (newValue != null) {
       _updateValue(newValue.clamp(widget.minValue, widget.maxValue));
     } else {
-      // If invalid input, revert to current value
       _controller.text = _currentValue.toString();
     }
   }
@@ -127,7 +121,6 @@ class _TrenSpinState extends State<TrenSpin>
   void dispose() {
     _focusNode.dispose();
     _animationController.dispose();
-    // 🔥 ONLY DISPOSE IF WE CREATED THE CONTROLLER
     if (_isControllerInternal) {
       _controller.dispose();
     }
@@ -152,13 +145,11 @@ class _TrenSpinState extends State<TrenSpin>
 
   @override
   Widget build(BuildContext context) {
-    // Get screen dimensions
     final screenSize = MediaQuery.of(context).size;
     final screenWidth = screenSize.width;
     final screenHeight = screenSize.height;
     final orientation = MediaQuery.of(context).orientation;
 
-    // Calculate responsive dimensions
     double responsiveWidth;
     double responsiveHeight;
 
@@ -177,192 +168,147 @@ class _TrenSpinState extends State<TrenSpin>
       responsiveHeight = responsiveHeight.clamp(50.0, 80.0);
     }
 
-    // Scale other elements
     double borderRadius = responsiveWidth * 0.04;
     double horizontalPadding = responsiveWidth * 0.04;
     double verticalPadding = responsiveHeight * 0.3;
     double fontSize = responsiveHeight * 0.28;
     double iconSize = responsiveHeight * 0.35;
 
-    // Ensure minimum readable sizes
     borderRadius = borderRadius.clamp(8.0, 16.0);
     horizontalPadding = horizontalPadding.clamp(12.0, 20.0);
     verticalPadding = verticalPadding.clamp(16.0, 24.0);
     fontSize = fontSize.clamp(14.0, 18.0);
     iconSize = iconSize.clamp(20.0, 26.0);
 
-    return AnimatedBuilder(
-      animation: _animationController,
-      builder: (context, child) {
-        return SizedBox(
-          width: responsiveWidth,
-          height: responsiveHeight + (shouldShowFloatingLabel ? 20 : 0),
-          child: Stack(
-            children: [
-              // Floating label outside the border
-              AnimatedPositioned(
-                duration: const Duration(milliseconds: 300),
-                curve: Curves.easeInOut,
-                left: horizontalPadding,
-                top: shouldShowFloatingLabel ? 0 : responsiveHeight * 0.5 - 10,
-                child: AnimatedDefaultTextStyle(
-                  duration: const Duration(milliseconds: 300),
-                  style: TextStyle(
-                    color: shouldShowFloatingLabel
-                        ? (_isFocused ? Colors.redAccent : Colors.grey[300])
-                        : Colors.grey[400],
-                    fontSize: shouldShowFloatingLabel ? 12 : fontSize * 0.9,
-                    fontWeight: shouldShowFloatingLabel
-                        ? FontWeight.w600
-                        : FontWeight.w500,
-                    letterSpacing: 0.5,
-                  ),
-                  child: AnimatedOpacity(
-                    duration: const Duration(milliseconds: 200),
-                    opacity: shouldShowFloatingLabel ? 1.0 : 0.7,
-                    child: Container(
-                      padding: shouldShowFloatingLabel
-                          ? const EdgeInsets.symmetric(
-                              horizontal: 4,
-                              vertical: 2,
-                            )
-                          : EdgeInsets.zero,
-                      decoration: shouldShowFloatingLabel
-                          ? BoxDecoration(
-                              color: Colors.black.withOpacity(0.8),
-                              borderRadius: BorderRadius.circular(4),
-                            )
-                          : null,
-                      child: Text(widget.prompt),
-                    ),
-                  ),
+    return SizedBox(
+      width: responsiveWidth,
+      height: responsiveHeight + 20,
+      child: Stack(
+        children: [
+          // Floating label always on top
+          Positioned(
+            left: horizontalPadding,
+            top: 0,
+            child: Container(
+              padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 2),
+              decoration: BoxDecoration(
+                color: Colors.black.withOpacity(0.8),
+                borderRadius: BorderRadius.circular(4),
+              ),
+              child: Text(
+                widget.prompt,
+                style: const TextStyle(
+                  color: Colors.grey,
+                  fontSize: 12,
+                  fontWeight: FontWeight.w600,
                 ),
               ),
+            ),
+          ),
 
-              // Main spin container
-              AnimatedPositioned(
+          // Main spin container
+          Positioned(
+            top: 18,
+            left: 0,
+            right: 0,
+            child: Container(
+              height: responsiveHeight,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(borderRadius),
+                boxShadow: [
+                  if (_isFocused)
+                    BoxShadow(
+                      color: Colors.redAccent.withOpacity(
+                        0.3 * _animationController.value,
+                      ),
+                      blurRadius: 20 * _animationController.value,
+                      spreadRadius: 2 * _animationController.value,
+                      offset: const Offset(0, 0),
+                    ),
+                  BoxShadow(
+                    color: Colors.black.withOpacity(_isFocused ? 0.4 : 0.2),
+                    blurRadius: _isFocused ? 12 : 6,
+                    offset: Offset(0, _isFocused ? 6 : 3),
+                  ),
+                ],
+              ),
+              child: AnimatedContainer(
                 duration: const Duration(milliseconds: 300),
                 curve: Curves.easeInOut,
-                top: shouldShowFloatingLabel ? 18 : 0,
-                left: 0,
-                right: 0,
-                child: Container(
-                  height: responsiveHeight,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(borderRadius),
-                    boxShadow: [
-                      if (_isFocused)
-                        BoxShadow(
-                          color: Colors.redAccent.withOpacity(
-                            0.3 * _animationController.value,
-                          ),
-                          blurRadius: 20 * _animationController.value,
-                          spreadRadius: 2 * _animationController.value,
-                          offset: const Offset(0, 0),
-                        ),
-                      BoxShadow(
-                        color: Colors.black.withOpacity(_isFocused ? 0.4 : 0.2),
-                        blurRadius: _isFocused ? 12 : 6,
-                        offset: Offset(0, _isFocused ? 6 : 3),
-                      ),
-                    ],
+                decoration: BoxDecoration(
+                  gradient: LinearGradient(
+                    begin: Alignment.topLeft,
+                    end: Alignment.bottomRight,
+                    colors: _isFocused
+                        ? [const Color(0xFF404040), const Color(0xFF2A2A2A)]
+                        : [const Color(0xFF363636), const Color(0xFF1F1F1F)],
                   ),
-                  child: AnimatedContainer(
-                    duration: const Duration(milliseconds: 300),
-                    curve: Curves.easeInOut,
-                    decoration: BoxDecoration(
-                      gradient: LinearGradient(
-                        begin: Alignment.topLeft,
-                        end: Alignment.bottomRight,
-                        colors: _isFocused
-                            ? [const Color(0xFF404040), const Color(0xFF2A2A2A)]
-                            : [
-                                const Color(0xFF363636),
-                                const Color(0xFF1F1F1F),
-                              ],
-                      ),
-                      borderRadius: BorderRadius.circular(borderRadius),
-                      border: Border.all(
-                        color: _isFocused
-                            ? Colors.redAccent.withOpacity(0.6)
-                            : Colors.grey.withOpacity(0.2),
-                        width: _isFocused ? 2 : 1,
-                      ),
+                  borderRadius: BorderRadius.circular(borderRadius),
+                  border: Border.all(
+                    color: _isFocused
+                        ? Colors.redAccent.withOpacity(0.6)
+                        : Colors.grey.withOpacity(0.2),
+                    width: _isFocused ? 2 : 1,
+                  ),
+                ),
+                child: Row(
+                  children: [
+                    _buildSpinButton(
+                      icon: Icons.remove,
+                      onPressed: _currentValue > widget.minValue
+                          ? _decrement
+                          : null,
+                      iconSize: iconSize,
+                      borderRadius: borderRadius,
                     ),
-                    child: Row(
-                      children: [
-                        // Decrement button
-                        _buildSpinButton(
-                          icon: Icons.remove,
-                          onPressed: _currentValue > widget.minValue
-                              ? _decrement
-                              : null,
-                          iconSize: iconSize,
-                          borderRadius: borderRadius,
-                        ),
-
-                        // Typable text field
-                        Expanded(
-                          child: Center(
-                            child: TextField(
-                              focusNode: _focusNode,
-                              controller: _controller,
-                              textAlign: TextAlign.center,
-                              keyboardType: TextInputType.number,
-                              inputFormatters: [
-                                FilteringTextInputFormatter.digitsOnly,
-                                LengthLimitingTextInputFormatter(6),
-                              ],
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontSize: fontSize,
-                                fontWeight: FontWeight.w500,
-                                letterSpacing: 0.5,
-                              ),
-                              cursorColor: Colors.redAccent,
-                              cursorWidth: max(2.0, responsiveWidth * 0.005),
-                              cursorHeight: 20,
-                              decoration: InputDecoration(
-                                hintText: shouldShowFloatingLabel
-                                    ? null
-                                    : widget.prompt,
-                                hintStyle: TextStyle(
-                                  color: Colors.grey[500],
-                                  fontSize: fontSize * 0.9,
-                                  fontWeight: FontWeight.w400,
-                                ),
-                                filled: true,
-                                fillColor: Colors.transparent,
-                                border: InputBorder.none,
-                                enabledBorder: InputBorder.none,
-                                focusedBorder: InputBorder.none,
-                                contentPadding: EdgeInsets.symmetric(
-                                  vertical: verticalPadding,
-                                  horizontal: 8,
-                                ),
-                              ),
+                    Expanded(
+                      child: Center(
+                        child: TextField(
+                          focusNode: _focusNode,
+                          controller: _controller,
+                          textAlign: TextAlign.center,
+                          keyboardType: TextInputType.number,
+                          inputFormatters: [
+                            FilteringTextInputFormatter.digitsOnly,
+                            LengthLimitingTextInputFormatter(6),
+                          ],
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: fontSize,
+                            fontWeight: FontWeight.w500,
+                            letterSpacing: 0.5,
+                          ),
+                          cursorColor: Colors.redAccent,
+                          cursorWidth: max(2.0, responsiveWidth * 0.005),
+                          cursorHeight: 20,
+                          decoration: InputDecoration(
+                            hintText: null,
+                            filled: true,
+                            fillColor: Colors.transparent,
+                            border: InputBorder.none,
+                            contentPadding: EdgeInsets.symmetric(
+                              vertical: verticalPadding,
+                              horizontal: 8,
                             ),
                           ),
                         ),
-
-                        // Increment button
-                        _buildSpinButton(
-                          icon: Icons.add,
-                          onPressed: _currentValue < widget.maxValue
-                              ? _increment
-                              : null,
-                          iconSize: iconSize,
-                          borderRadius: borderRadius,
-                        ),
-                      ],
+                      ),
                     ),
-                  ),
+                    _buildSpinButton(
+                      icon: Icons.add,
+                      onPressed: _currentValue < widget.maxValue
+                          ? _increment
+                          : null,
+                      iconSize: iconSize,
+                      borderRadius: borderRadius,
+                    ),
+                  ],
                 ),
               ),
-            ],
+            ),
           ),
-        );
-      },
+        ],
+      ),
     );
   }
 
@@ -402,17 +348,14 @@ class _TrenSpinState extends State<TrenSpin>
           splashColor: Colors.redAccent.withOpacity(0.1),
           highlightColor: Colors.redAccent.withOpacity(0.05),
           child: Center(
-            child: AnimatedContainer(
-              duration: const Duration(milliseconds: 200),
-              child: Icon(
-                icon,
-                color: isEnabled
-                    ? (_isFocused
-                          ? Colors.redAccent.withOpacity(0.8)
-                          : Colors.grey[300])
-                    : Colors.grey[600],
-                size: iconSize,
-              ),
+            child: Icon(
+              icon,
+              color: isEnabled
+                  ? (_isFocused
+                        ? Colors.redAccent.withOpacity(0.8)
+                        : Colors.grey[300])
+                  : Colors.grey[600],
+              size: iconSize,
             ),
           ),
         ),
